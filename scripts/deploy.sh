@@ -141,7 +141,18 @@ else
     echo "server.properties -> server/server.properties (new)"
 fi
 
-# 5. mindcraft's own .gitignore already excludes keys.json; make sure of it.
-grep -q '^keys.json$' "$MINDCRAFT/.gitignore" 2>/dev/null || echo 'keys.json' >> "$MINDCRAFT/.gitignore"
+# 5. Keep the mindcraft clone's own git quiet.
+#    It is an upstream checkout we never commit to, but everything deployed above shows up
+#    as changes there - and editors that scan nested repositories surface them as pending work.
+#    Untracked output goes into its .gitignore; files it tracks are marked skip-worktree, which
+#    hides local modifications from git without affecting what deploy writes.
+GITIGNORE="$MINDCRAFT/.gitignore"
+git -C "$MINDCRAFT" update-index --no-skip-worktree .gitignore 2>/dev/null || true
+for entry in 'keys.json' '.nvmrc' 'profiles/custom/' 'patches/mineflayer+4.39.0.patch'; do
+    grep -qxF "$entry" "$GITIGNORE" 2>/dev/null || printf '%s\n' "$entry" >> "$GITIGNORE"
+done
+for tracked in settings.js package.json patches/mineflayer+4.33.0.patch .gitignore; do
+    git -C "$MINDCRAFT" update-index --skip-worktree "$tracked" 2>/dev/null || true
+done
 
 echo "done"

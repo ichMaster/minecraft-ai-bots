@@ -1,0 +1,6 @@
+{
+    // mindcraft/ is an upstream clone and build output: everything inside it is produced by
+    // scripts/deploy.sh. Without this, the editor lists its files as pending changes.
+    "git.ignoredRepositories": ["mindcraft"],
+    "git.detectSubmodules": false
+}
