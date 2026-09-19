@@ -50,7 +50,9 @@ case "$ROLE" in
     porter) BASE=8130 ;;
     miner)  BASE=8140 ;;
     guard)  BASE=8150 ;;
-    *)      BASE=8160 ;;
+    crafter) BASE=8160 ;;
+    scout)  BASE=8170 ;;
+    *)      BASE=8180 ;;
 esac
 PORT=$((BASE + INDEX - 1))
 

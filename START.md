@@ -30,6 +30,8 @@ Done (9.747s)! For help, type "help"
 ~/development/minecraft-ai-bots/scripts/start-porter.sh
 ~/development/minecraft-ai-bots/scripts/start-miner.sh
 ~/development/minecraft-ai-bots/scripts/start-guard.sh      # або з номером копії: start-guard.sh 2
+~/development/minecraft-ai-bots/scripts/start-crafter.sh
+~/development/minecraft-ai-bots/scripts/start-scout.sh
 ```
 
 Важливо: при окремому запуску кожен бот вважає, що він на сервері сам, і тоді **всі троє відповідають на кожне повідомлення в загальному чаті**. Пиши через `/msg`, як і раніше.
@@ -48,6 +50,8 @@ Done (9.747s)! For help, type "help"
 /msg Porter йди за мною
 /msg Porter принеси 10 дуба
 /msg Miner принеси 5 заліза
+/msg Crafter зроби 20 факелів
+/msg Scout де найближче вугілля
 ```
 
 ## 5. Зупинка
